@@ -26,9 +26,9 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
   };
 
   return (
-    <Card className="p-6 max-w-2xl mx-auto mb-8 animate-fade-in">
+    <Card className="p-8 max-w-3xl mx-auto animate-fade-in bg-white/80 backdrop-blur-sm border border-gray-100">
       <div className="space-y-6">
-        <h3 className="text-xl font-semibold">{mcq.question}</h3>
+        <h3 className="text-xl font-semibold text-gray-800">{mcq.question}</h3>
 
         <RadioGroup
           value={selectedOption}
@@ -38,12 +38,12 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
           {mcq.options.map((option) => (
             <div
               key={option.id}
-              className={`flex items-center space-x-2 p-4 rounded-lg border ${
+              className={`flex items-center space-x-3 p-4 rounded-lg border transition-all duration-200 ${
                 isSubmitted && option.isCorrect
-                  ? "bg-green-50 border-green-200"
+                  ? "bg-green-50/80 border-green-200"
                   : isSubmitted && option.id === selectedOption && !option.isCorrect
-                  ? "bg-red-50 border-red-200"
-                  : "hover:bg-gray-50"
+                  ? "bg-red-50/80 border-red-200"
+                  : "hover:bg-gray-50/80 border-gray-200"
               }`}
             >
               <RadioGroupItem value={option.id} id={option.id} />
@@ -56,7 +56,7 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
 
         {isSubmitted && (
           <div className={`flex items-center gap-2 p-4 rounded-lg ${
-            isCorrect ? "bg-green-50 text-green-700" : "bg-red-50 text-red-700"
+            isCorrect ? "bg-green-50/80 text-green-700" : "bg-red-50/80 text-red-700"
           }`}>
             {isCorrect ? (
               <CheckCircle2 className="h-5 w-5" />
@@ -72,13 +72,13 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
         <div className="space-y-4">
           {isSubmitted && (
             <div className="space-y-4">
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <p className="font-semibold">Topic: {mcq.topic}</p>
+              <div className="p-4 bg-gray-50/80 rounded-lg">
+                <p className="font-semibold text-gray-800">Topic: {mcq.topic}</p>
                 <p className="text-sm text-gray-600 mt-1">
                   Source: {mcq.sourceStatement}
                 </p>
               </div>
-              <div className="p-4 bg-blue-50 rounded-lg">
+              <div className="p-4 bg-blue-50/80 rounded-lg">
                 <p className="font-semibold text-blue-900">Explanation:</p>
                 <p className="text-sm text-blue-800 mt-1">{mcq.explanation}</p>
               </div>

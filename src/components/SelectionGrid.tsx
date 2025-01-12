@@ -15,17 +15,20 @@ export const SelectionGrid = ({ items, onSelect }: SelectionGridProps) => {
       {items.map((item) => (
         <Card
           key={item.id}
-          className="p-6 hover:shadow-lg transition-shadow cursor-pointer"
+          className="group relative overflow-hidden p-6 hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1 cursor-pointer bg-white/80 backdrop-blur-sm border border-gray-100"
           onClick={() => onSelect(item.id)}
         >
-          {item.logo && (
-            <img
-              src={item.logo}
-              alt={item.name}
-              className="w-16 h-16 mb-4 mx-auto"
-            />
-          )}
-          <h3 className="text-lg font-semibold text-center">{item.name}</h3>
+          <div className="relative z-10">
+            {item.logo && (
+              <img
+                src={item.logo}
+                alt={item.name}
+                className="w-16 h-16 mb-4 mx-auto object-contain transition-transform duration-300 group-hover:scale-110"
+              />
+            )}
+            <h3 className="text-lg font-semibold text-center text-gray-800">{item.name}</h3>
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </Card>
       ))}
     </div>

@@ -5,6 +5,7 @@ import { SelectionGrid } from "@/components/SelectionGrid";
 import { MCQQuestion } from "@/components/MCQQuestion";
 import { SearchBar } from "@/components/SearchBar";
 import { Button } from "@/components/ui/button";
+import { Settings } from "lucide-react";
 import {
   universities,
   faculties,
@@ -109,43 +110,49 @@ const Index = () => {
   const renderContent = () => {
     if (!selectedUniversity) {
       return (
-        <SelectionGrid items={universities} onSelect={setSelectedUniversity} />
+        <div className="space-y-8">
+          <h1 className="text-3xl font-bold text-gray-800 mb-6">Select Your University</h1>
+          <SelectionGrid items={universities} onSelect={setSelectedUniversity} />
+        </div>
       );
     }
 
     if (!selectedFaculty) {
       return (
-        <>
+        <div className="space-y-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Choose Your Faculty</h2>
           <SearchBar
             onSearch={setSearchQuery}
             placeholder="Search faculties..."
           />
           <SelectionGrid items={filteredItems} onSelect={setSelectedFaculty} />
-        </>
+        </div>
       );
     }
 
     if (!selectedProgram) {
       return (
-        <>
+        <div className="space-y-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Select Your Program</h2>
           <SearchBar
             onSearch={setSearchQuery}
             placeholder="Search programs..."
           />
           <SelectionGrid items={filteredItems} onSelect={setSelectedProgram} />
-        </>
+        </div>
       );
     }
 
     if (!selectedCourse) {
       return (
-        <>
+        <div className="space-y-8">
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">Choose Your Course</h2>
           <SearchBar
             onSearch={setSearchQuery}
             placeholder="Search courses..."
           />
           <SelectionGrid items={filteredItems} onSelect={setSelectedCourse} />
-        </>
+        </div>
       );
     }
 
@@ -153,13 +160,15 @@ const Index = () => {
     if (courseMCQs.length === 0) {
       return (
         <div className="text-center py-12">
-          <h3 className="text-xl font-semibold">No MCQs available for this course</h3>
+          <h3 className="text-xl font-semibold text-gray-700">No MCQs available for this course</h3>
+          <p className="text-gray-500 mt-2">Please check back later or select a different course.</p>
         </div>
       );
     }
 
     return (
       <div className="space-y-8">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-6">Practice Questions</h2>
         {courseMCQs.map((mcq) => (
           <MCQQuestion key={mcq.id} mcq={mcq} />
         ))}
@@ -168,12 +177,17 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-soft">
-      <div className="container py-8 space-y-6">
+    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
+      <div className="container max-w-6xl mx-auto px-4 py-8 space-y-8">
         <div className="flex justify-between items-center">
-          <Breadcrumb items={getBreadcrumbItems()} />
+          <div className="flex-1">
+            <Breadcrumb items={getBreadcrumbItems()} />
+          </div>
           <Link to="/admin">
-            <Button variant="outline">Admin Panel</Button>
+            <Button variant="outline" className="gap-2">
+              <Settings className="w-4 h-4" />
+              Admin Panel
+            </Button>
           </Link>
         </div>
         {renderContent()}
