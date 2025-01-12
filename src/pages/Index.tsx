@@ -1,8 +1,10 @@
 import { useState, useMemo } from "react";
+import { Link } from "react-router-dom";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { SelectionGrid } from "@/components/SelectionGrid";
 import { MCQQuestion } from "@/components/MCQQuestion";
 import { SearchBar } from "@/components/SearchBar";
+import { Button } from "@/components/ui/button";
 import {
   universities,
   faculties,
@@ -12,9 +14,7 @@ import {
 } from "@/data/mockData";
 
 const Index = () => {
-  const [selectedUniversity, setSelectedUniversity] = useState<string | null>(
-    null
-  );
+  const [selectedUniversity, setSelectedUniversity] = useState<string | null>(null);
   const [selectedFaculty, setSelectedFaculty] = useState<string | null>(null);
   const [selectedProgram, setSelectedProgram] = useState<string | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
@@ -168,9 +168,14 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-soft">
       <div className="container py-8 space-y-6">
-        <Breadcrumb items={getBreadcrumbItems()} />
+        <div className="flex justify-between items-center">
+          <Breadcrumb items={getBreadcrumbItems()} />
+          <Link to="/admin">
+            <Button variant="outline">Admin Panel</Button>
+          </Link>
+        </div>
         {renderContent()}
       </div>
     </div>
