@@ -65,7 +65,20 @@ export const mcqs: Record<string, MCQ[]> = {
       ],
       topic: "Sorting Algorithms",
       sourceStatement: "Chapter 3: Algorithm Analysis - Introduction to Algorithms",
+      explanation: "QuickSort has an average time complexity of O(n log n) because it divides the array into two parts in each recursive step (log n) and needs to process all elements (n). The partitioning process ensures that elements are divided around a pivot, making it efficient for most real-world scenarios.",
     },
-    // Add more MCQs as needed
+    {
+      id: "2",
+      question: "Which data structure is most suitable for implementing a priority queue?",
+      options: [
+        { id: "1", text: "Array", isCorrect: false },
+        { id: "2", text: "Linked List", isCorrect: false },
+        { id: "3", text: "Binary Heap", isCorrect: true },
+        { id: "4", text: "Stack", isCorrect: false },
+      ],
+      topic: "Data Structures",
+      sourceStatement: "Chapter 4: Priority Queues - Data Structures and Algorithms",
+      explanation: "A Binary Heap is the most efficient data structure for implementing a priority queue because it maintains the heap property (parent nodes are always greater/smaller than children) and provides O(log n) time complexity for both insertion and deletion operations.",
+    },
   ],
 };

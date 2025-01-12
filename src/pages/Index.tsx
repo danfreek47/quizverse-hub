@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { Breadcrumb } from "@/components/Breadcrumb";
 import { SelectionGrid } from "@/components/SelectionGrid";
 import { MCQQuestion } from "@/components/MCQQuestion";
+import { SearchBar } from "@/components/SearchBar";
 import {
   universities,
   faculties,
@@ -17,7 +18,7 @@ const Index = () => {
   const [selectedFaculty, setSelectedFaculty] = useState<string | null>(null);
   const [selectedProgram, setSelectedProgram] = useState<string | null>(null);
   const [selectedCourse, setSelectedCourse] = useState<string | null>(null);
-  const [currentMCQIndex, setCurrentMCQIndex] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const getBreadcrumbItems = () => {
     const items = [
@@ -76,6 +77,35 @@ const Index = () => {
     return items;
   };
 
+  const filteredItems = useMemo(() => {
+    const query = searchQuery.toLowerCase();
+    if (!selectedUniversity) {
+      return universities;
+    }
+    if (!selectedFaculty) {
+      return faculties
+        .filter((f) => f.universityId === selectedUniversity)
+        .filter((f) => f.name.toLowerCase().includes(query));
+    }
+    if (!selectedProgram) {
+      return programs
+        .filter((p) => p.facultyId === selectedFaculty)
+        .filter((p) => p.name.toLowerCase().includes(query));
+    }
+    if (!selectedCourse) {
+      return courses
+        .filter((c) => c.programId === selectedProgram)
+        .filter((c) => c.name.toLowerCase().includes(query));
+    }
+    return [];
+  }, [
+    selectedUniversity,
+    selectedFaculty,
+    selectedProgram,
+    selectedCourse,
+    searchQuery,
+  ]);
+
   const renderContent = () => {
     if (!selectedUniversity) {
       return (
@@ -84,24 +114,39 @@ const Index = () => {
     }
 
     if (!selectedFaculty) {
-      const filteredFaculties = faculties.filter(
-        (f) => f.universityId === selectedUniversity
+      return (
+        <>
+          <SearchBar
+            onSearch={setSearchQuery}
+            placeholder="Search faculties..."
+          />
+          <SelectionGrid items={filteredItems} onSelect={setSelectedFaculty} />
+        </>
       );
-      return <SelectionGrid items={filteredFaculties} onSelect={setSelectedFaculty} />;
     }
 
     if (!selectedProgram) {
-      const filteredPrograms = programs.filter(
-        (p) => p.facultyId === selectedFaculty
+      return (
+        <>
+          <SearchBar
+            onSearch={setSearchQuery}
+            placeholder="Search programs..."
+          />
+          <SelectionGrid items={filteredItems} onSelect={setSelectedProgram} />
+        </>
       );
-      return <SelectionGrid items={filteredPrograms} onSelect={setSelectedProgram} />;
     }
 
     if (!selectedCourse) {
-      const filteredCourses = courses.filter(
-        (c) => c.programId === selectedProgram
+      return (
+        <>
+          <SearchBar
+            onSearch={setSearchQuery}
+            placeholder="Search courses..."
+          />
+          <SelectionGrid items={filteredItems} onSelect={setSelectedCourse} />
+        </>
       );
-      return <SelectionGrid items={filteredCourses} onSelect={setSelectedCourse} />;
     }
 
     const courseMCQs = mcqs[selectedCourse] || [];
@@ -114,14 +159,11 @@ const Index = () => {
     }
 
     return (
-      <MCQQuestion
-        mcq={courseMCQs[currentMCQIndex]}
-        onNext={() => {
-          if (currentMCQIndex < courseMCQs.length - 1) {
-            setCurrentMCQIndex(currentMCQIndex + 1);
-          }
-        }}
-      />
+      <div className="space-y-8">
+        {courseMCQs.map((mcq) => (
+          <MCQQuestion key={mcq.id} mcq={mcq} />
+        ))}
+      </div>
     );
   };
 

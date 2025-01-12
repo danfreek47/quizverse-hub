@@ -1,7 +1,7 @@
 export interface University {
   id: string;
   name: string;
-  logo: string;
+  logo?: string;
 }
 
 export interface Faculty {
@@ -34,4 +34,5 @@ export interface MCQ {
   options: MCQOption[];
   topic: string;
   sourceStatement: string;
+  explanation: string;
 }

@@ -8,10 +8,9 @@ import { useToast } from "@/hooks/use-toast";
 
 interface MCQQuestionProps {
   mcq: MCQ;
-  onNext?: () => void;
 }
 
-export const MCQQuestion = ({ mcq, onNext }: MCQQuestionProps) => {
+export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
   const [selectedOption, setSelectedOption] = useState<string>("");
   const [isSubmitted, setIsSubmitted] = useState(false);
   const { toast } = useToast();
@@ -32,14 +31,14 @@ export const MCQQuestion = ({ mcq, onNext }: MCQQuestionProps) => {
     toast({
       title: isCorrect ? "Correct!" : "Incorrect",
       description: isCorrect
-        ? "Great job! Click next to continue."
-        : "Try again or click next to continue.",
+        ? "Great job!"
+        : "Try reviewing the explanation below.",
       variant: isCorrect ? "default" : "destructive",
     });
   };
 
   return (
-    <Card className="p-6 max-w-2xl mx-auto animate-fade-in">
+    <Card className="p-6 max-w-2xl mx-auto mb-8 animate-fade-in">
       <div className="space-y-6">
         <h3 className="text-xl font-semibold">{mcq.question}</h3>
 
@@ -67,32 +66,27 @@ export const MCQQuestion = ({ mcq, onNext }: MCQQuestionProps) => {
 
         <div className="space-y-4">
           {isSubmitted && (
-            <div className="space-y-2 p-4 bg-gray-50 rounded-lg">
-              <p className="font-semibold">Topic: {mcq.topic}</p>
-              <p className="text-sm text-gray-600">
-                Source: {mcq.sourceStatement}
-              </p>
+            <div className="space-y-4">
+              <div className="p-4 bg-gray-50 rounded-lg">
+                <p className="font-semibold">Topic: {mcq.topic}</p>
+                <p className="text-sm text-gray-600 mt-1">
+                  Source: {mcq.sourceStatement}
+                </p>
+              </div>
+              <div className="p-4 bg-blue-50 rounded-lg">
+                <p className="font-semibold text-blue-900">Explanation:</p>
+                <p className="text-sm text-blue-800 mt-1">{mcq.explanation}</p>
+              </div>
             </div>
           )}
 
-          <div className="flex justify-between">
-            <Button
-              onClick={handleSubmit}
-              disabled={isSubmitted}
-              className="w-32"
-            >
-              Submit
-            </Button>
-            {onNext && (
-              <Button
-                onClick={onNext}
-                variant="outline"
-                className="w-32"
-              >
-                Next
-              </Button>
-            )}
-          </div>
+          <Button
+            onClick={handleSubmit}
+            disabled={isSubmitted}
+            className="w-full"
+          >
+            Submit
+          </Button>
         </div>
       </div>
     </Card>
