@@ -6,32 +6,23 @@
   :root {
     --background: 225 23% 11%;
     --foreground: 0 0% 95%;
-
     --card: 225 23% 11%;
     --card-foreground: 0 0% 95%;
-
     --popover: 225 23% 11%;
     --popover-foreground: 0 0% 95%;
-
     --primary: 225 23% 11%;
     --primary-foreground: 0 0% 95%;
-
     --secondary: 220 4% 25%;
     --secondary-foreground: 0 0% 95%;
-
     --muted: 220 4% 25%;
     --muted-foreground: 0 0% 95%;
-
     --accent: 220 4% 25%;
     --accent-foreground: 0 0% 95%;
-
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
-
     --border: 220 4% 25%;
     --input: 220 4% 25%;
     --ring: 220 4% 25%;
-
     --radius: 0.75rem;
   }
 }
@@ -42,10 +33,26 @@
   }
 
   body {
-    @apply bg-gradient-dark text-foreground;
+    @apply bg-gradient-dark text-foreground min-h-screen;
   }
 
   .glass-card {
-    @apply bg-gradient-card backdrop-blur-lg border border-white/10 shadow-xl;
+    @apply bg-gradient-card backdrop-blur-lg border border-white/10 shadow-xl transition-all duration-300;
+  }
+
+  .nav-item {
+    @apply px-4 py-2 rounded-lg transition-all duration-300 hover:bg-white/5;
+  }
+
+  .page-container {
+    @apply container max-w-6xl mx-auto px-4 py-8 space-y-8;
+  }
+
+  .section-header {
+    @apply text-center space-y-4 mb-12;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
   }
 }
