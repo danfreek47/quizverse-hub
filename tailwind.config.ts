@@ -25,24 +25,24 @@ export default {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#9b87f5",
+          DEFAULT: "#1A1F2C",
           foreground: "#ffffff",
         },
         secondary: {
-          DEFAULT: "#F2FCE2",
-          foreground: "#222222",
+          DEFAULT: "#403E43",
+          foreground: "#ffffff",
         },
         accent: {
-          DEFAULT: "#7E69AB",
-          foreground: "#ffffff",
+          DEFAULT: "#8E9196",
+          foreground: "#1A1F2C",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "hsl(var(--muted))",
-          foreground: "hsl(var(--muted-foreground))",
+          DEFAULT: "#222222",
+          foreground: "#C8C8C9",
         },
         popover: {
           DEFAULT: "hsl(var(--popover))",
@@ -78,7 +78,8 @@ export default {
         "fade-in": "fade-in 0.3s ease-out",
       },
       backgroundImage: {
-        'gradient-soft': 'linear-gradient(109.6deg, rgba(223,234,247,1) 11.2%, rgba(244,248,252,1) 91.1%)',
+        'gradient-dark': 'linear-gradient(to right, #1A1F2C, #403E43)',
+        'gradient-card': 'linear-gradient(135deg, rgba(26,31,44,0.9), rgba(64,62,67,0.9))',
       },
     },
   },

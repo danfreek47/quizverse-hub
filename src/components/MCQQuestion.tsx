@@ -16,19 +16,16 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
   const [isCorrect, setIsCorrect] = useState<boolean | null>(null);
 
   const handleSubmit = () => {
-    if (!selectedOption) {
-      return;
-    }
-
+    if (!selectedOption) return;
     const correct = mcq.options.find((opt) => opt.id === selectedOption)?.isCorrect;
     setIsCorrect(!!correct);
     setIsSubmitted(true);
   };
 
   return (
-    <Card className="p-8 max-w-3xl mx-auto animate-fade-in bg-white/80 backdrop-blur-sm border border-gray-100">
+    <Card className="p-8 max-w-3xl mx-auto animate-fade-in glass-card">
       <div className="space-y-6">
-        <h3 className="text-xl font-semibold text-gray-800">{mcq.question}</h3>
+        <h3 className="text-xl font-semibold text-white/90">{mcq.question}</h3>
 
         <RadioGroup
           value={selectedOption}
@@ -40,10 +37,10 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
               key={option.id}
               className={`flex items-center space-x-3 p-4 rounded-lg border transition-all duration-200 ${
                 isSubmitted && option.isCorrect
-                  ? "bg-green-50/80 border-green-200"
+                  ? "bg-green-900/20 border-green-500/30 text-green-300"
                   : isSubmitted && option.id === selectedOption && !option.isCorrect
-                  ? "bg-red-50/80 border-red-200"
-                  : "hover:bg-gray-50/80 border-gray-200"
+                  ? "bg-red-900/20 border-red-500/30 text-red-300"
+                  : "hover:bg-white/5 border-white/10 text-white/80"
               }`}
             >
               <RadioGroupItem value={option.id} id={option.id} />
@@ -56,7 +53,9 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
 
         {isSubmitted && (
           <div className={`flex items-center gap-2 p-4 rounded-lg ${
-            isCorrect ? "bg-green-50/80 text-green-700" : "bg-red-50/80 text-red-700"
+            isCorrect 
+              ? "bg-green-900/20 text-green-300 border border-green-500/30" 
+              : "bg-red-900/20 text-red-300 border border-red-500/30"
           }`}>
             {isCorrect ? (
               <CheckCircle2 className="h-5 w-5" />
@@ -72,15 +71,15 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
         <div className="space-y-4">
           {isSubmitted && (
             <div className="space-y-4">
-              <div className="p-4 bg-gray-50/80 rounded-lg">
-                <p className="font-semibold text-gray-800">Topic: {mcq.topic}</p>
-                <p className="text-sm text-gray-600 mt-1">
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
+                <p className="font-semibold text-white/90">Topic: {mcq.topic}</p>
+                <p className="text-sm text-white/70 mt-1">
                   Source: {mcq.sourceStatement}
                 </p>
               </div>
-              <div className="p-4 bg-blue-50/80 rounded-lg">
-                <p className="font-semibold text-blue-900">Explanation:</p>
-                <p className="text-sm text-blue-800 mt-1">{mcq.explanation}</p>
+              <div className="p-4 bg-primary/30 rounded-lg border border-white/10">
+                <p className="font-semibold text-white/90">Explanation:</p>
+                <p className="text-sm text-white/70 mt-1">{mcq.explanation}</p>
               </div>
             </div>
           )}
@@ -88,7 +87,7 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
           <Button
             onClick={handleSubmit}
             disabled={isSubmitted || !selectedOption}
-            className="w-full"
+            className="w-full bg-accent hover:bg-accent/80 text-accent-foreground transition-colors duration-300"
           >
             Submit
           </Button>
