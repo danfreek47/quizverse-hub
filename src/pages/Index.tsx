@@ -110,7 +110,7 @@ const Index = () => {
   const renderContent = () => {
     if (!selectedUniversity) {
       return (
-        <div className="space-y-8">
+        <div className="space-y-8 animate-fade-in">
           <h1 className="text-3xl font-bold text-gray-800 mb-6">Select Your University</h1>
           <SelectionGrid items={universities} onSelect={setSelectedUniversity} />
         </div>
@@ -119,7 +119,7 @@ const Index = () => {
 
     if (!selectedFaculty) {
       return (
-        <div className="space-y-8">
+        <div className="space-y-8 animate-fade-in">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Choose Your Faculty</h2>
           <SearchBar
             onSearch={setSearchQuery}
@@ -132,7 +132,7 @@ const Index = () => {
 
     if (!selectedProgram) {
       return (
-        <div className="space-y-8">
+        <div className="space-y-8 animate-fade-in">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Select Your Program</h2>
           <SearchBar
             onSearch={setSearchQuery}
@@ -145,7 +145,7 @@ const Index = () => {
 
     if (!selectedCourse) {
       return (
-        <div className="space-y-8">
+        <div className="space-y-8 animate-fade-in">
           <h2 className="text-2xl font-semibold text-gray-800 mb-4">Choose Your Course</h2>
           <SearchBar
             onSearch={setSearchQuery}
@@ -159,7 +159,7 @@ const Index = () => {
     const courseMCQs = mcqs[selectedCourse] || [];
     if (courseMCQs.length === 0) {
       return (
-        <div className="text-center py-12">
+        <div className="text-center py-12 animate-fade-in">
           <h3 className="text-xl font-semibold text-gray-700">No MCQs available for this course</h3>
           <p className="text-gray-500 mt-2">Please check back later or select a different course.</p>
         </div>
@@ -167,7 +167,7 @@ const Index = () => {
     }
 
     return (
-      <div className="space-y-8">
+      <div className="space-y-8 animate-fade-in">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">Practice Questions</h2>
         {courseMCQs.map((mcq) => (
           <MCQQuestion key={mcq.id} mcq={mcq} />
@@ -177,7 +177,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-white to-gray-50">
+    <div className="min-h-screen bg-gradient-soft">
       <div className="container max-w-6xl mx-auto px-4 py-8 space-y-8">
         <div className="flex justify-between items-center">
           <div className="flex-1">
