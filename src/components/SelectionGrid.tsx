@@ -30,7 +30,7 @@ export const SelectionGrid = ({ items, onSelect }: SelectionGridProps) => {
               {item.name}
             </h3>
           </div>
-          <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          <div className="absolute inset-0 bg-gradient-to-br from-[#1E90FF]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </Card>
       ))}
     </div>

@@ -1,43 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 225 23% 11%;
+    --background: 0 0% 7%;
     --foreground: 0 0% 95%;
-    --card: 225 23% 11%;
+    --card: 0 0% 9%;
     --card-foreground: 0 0% 95%;
-    --popover: 225 23% 11%;
+    --popover: 0 0% 9%;
     --popover-foreground: 0 0% 95%;
-    --primary: 225 23% 11%;
-    --primary-foreground: 0 0% 95%;
-    --secondary: 220 4% 25%;
-    --secondary-foreground: 0 0% 95%;
-    --muted: 220 4% 25%;
-    --muted-foreground: 0 0% 95%;
-    --accent: 220 4% 25%;
-    --accent-foreground: 0 0% 95%;
+    --primary: 210 100% 56%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 100% 41%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 83%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 0 0% 9%;
     --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 95%;
-    --border: 220 4% 25%;
-    --input: 220 4% 25%;
-    --ring: 220 4% 25%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 210 100% 56%;
     --radius: 0.75rem;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-gradient-dark text-foreground min-h-screen;
+    @apply bg-[#121212] text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
   }
 
   .glass-card {
-    @apply bg-gradient-card backdrop-blur-lg border border-white/10 shadow-xl transition-all duration-300;
+    @apply bg-gradient-to-br from-[#1a1a1a]/90 to-[#242424]/90 backdrop-blur-lg border border-white/5 shadow-xl;
   }
 
   .nav-item {
@@ -53,6 +54,6 @@
   }
 
   .gradient-text {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-accent;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1E90FF] to-[#00CED1];
   }
 }

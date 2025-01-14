@@ -23,7 +23,7 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
   };
 
   return (
-    <Card className="p-8 max-w-3xl mx-auto animate-fade-in glass-card hover:shadow-2xl hover:shadow-accent/5">
+    <Card className="p-8 max-w-3xl mx-auto glass-card transition-all duration-300 hover:shadow-2xl hover:shadow-[#1E90FF]/5 animate-fade-in">
       <div className="space-y-6">
         <div className="flex items-start gap-4">
           <div className="flex-1">
@@ -43,9 +43,9 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
               key={option.id}
               className={`flex items-center space-x-3 p-4 rounded-lg border transition-all duration-300 hover:translate-x-1 ${
                 isSubmitted && option.isCorrect
-                  ? "bg-green-900/20 border-green-500/30 text-green-300"
+                  ? "bg-[#00CED1]/10 border-[#00CED1]/30 text-[#00CED1]"
                   : isSubmitted && option.id === selectedOption && !option.isCorrect
-                  ? "bg-red-900/20 border-red-500/30 text-red-300"
+                  ? "bg-red-900/10 border-red-500/30 text-red-300"
                   : "hover:bg-white/5 border-white/10 text-white/80"
               }`}
             >
@@ -60,8 +60,8 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
         {isSubmitted && (
           <div className={`flex items-center gap-2 p-4 rounded-lg ${
             isCorrect 
-              ? "bg-green-900/20 text-green-300 border border-green-500/30" 
-              : "bg-red-900/20 text-red-300 border border-red-500/30"
+              ? "bg-[#00CED1]/10 text-[#00CED1] border border-[#00CED1]/30" 
+              : "bg-red-900/10 text-red-300 border border-red-500/30"
           }`}>
             {isCorrect ? (
               <CheckCircle2 className="h-5 w-5" />
@@ -77,19 +77,19 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
         <div className="space-y-4">
           {isSubmitted && (
             <div className="space-y-4">
-              <div className="p-4 bg-primary/30 rounded-lg border border-white/10">
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
                 <div className="flex items-center gap-2 mb-2">
-                  <GraduationCap className="h-5 w-5 text-accent" />
+                  <GraduationCap className="h-5 w-5 text-[#1E90FF]" />
                   <p className="font-semibold text-white/90">Topic: {mcq.topic}</p>
                 </div>
                 <div className="flex items-center gap-2">
-                  <BookOpen className="h-5 w-5 text-accent" />
+                  <BookOpen className="h-5 w-5 text-[#1E90FF]" />
                   <p className="text-sm text-white/70">
                     Source: {mcq.sourceStatement}
                   </p>
                 </div>
               </div>
-              <div className="p-4 bg-secondary/30 rounded-lg border border-white/10">
+              <div className="p-4 bg-white/5 rounded-lg border border-white/10">
                 <p className="font-semibold text-white/90 mb-2">Explanation:</p>
                 <p className="text-sm text-white/70 leading-relaxed">
                   {mcq.explanation}
@@ -101,7 +101,7 @@ export const MCQQuestion = ({ mcq }: MCQQuestionProps) => {
           <Button
             onClick={handleSubmit}
             disabled={isSubmitted || !selectedOption}
-            className="w-full bg-accent hover:bg-accent/80 text-accent-foreground transition-all duration-300 hover:shadow-lg disabled:opacity-50"
+            className="w-full bg-[#1E90FF] hover:bg-[#1E90FF]/80 text-white transition-all duration-300 hover:shadow-lg disabled:opacity-50 min-h-[44px]"
           >
             Submit Answer
           </Button>
